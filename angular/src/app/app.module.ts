@@ -32,6 +32,9 @@ import { SideBarUserAreaComponent } from '@app/layout/sidebar-user-area.componen
 import { SideBarNavComponent } from '@app/layout/sidebar-nav.component';
 import { SideBarFooterComponent } from '@app/layout/sidebar-footer.component';
 import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
+import { CoursesComponent } from './courses/courses.component';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
+import { CreateCourseComponent } from './courses/create-course/create-course.component';
 
 @NgModule({
     declarations: [
@@ -39,21 +42,23 @@ import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
         HomeComponent,
         AboutComponent,
         TenantsComponent,
-		CreateTenantComponent,
-		EditTenantComponent,
+        CreateTenantComponent,
+        EditTenantComponent,
         UsersComponent,
-		CreateUserComponent,
-		EditUserComponent,
-      	RolesComponent,        
-		CreateRoleComponent,
-		EditRoleComponent,
+        CreateUserComponent,
+        EditUserComponent,
+        RolesComponent,
+        CreateRoleComponent,
+        EditRoleComponent,
         TopBarComponent,
         TopBarLanguageSwitchComponent,
         SideBarUserAreaComponent,
         SideBarNavComponent,
         SideBarFooterComponent,
-        RightSideBarComponent
-    
+        RightSideBarComponent,
+        CoursesComponent,
+        EditCourseComponent,
+        CreateCourseComponent
     ],
     imports: [
         CommonModule,

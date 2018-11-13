@@ -92,6 +92,7 @@
     <text name="Skins">Temas</text>
     <text name="Settings">Configurações</text>
     <text name="Submit">Enviar</text>
-    <text name="UserDetails">Detalhes do Usuário</text>
+    <text name="Courses">Cursos</text>
+
   </texts>
 </localizationDictionary>

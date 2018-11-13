@@ -13,4 +13,10 @@
   <ItemGroup>
     <ProjectReference Include="..\HorasComplementaresApp.Core\HorasComplementaresApp.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Course\Notifications\CourseUserEmailer.cs" />
+    <Compile Remove="Course\Course.cs" />
+    <Compile Remove="Course\CourseCancelledEvent.cs" />
+    <Compile Remove="Course\ICourseManager.cs" />
+  </ItemGroup>
 </Project>
