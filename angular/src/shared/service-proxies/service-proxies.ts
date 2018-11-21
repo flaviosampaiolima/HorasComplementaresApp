@@ -219,6 +219,65 @@ export class CourseServiceProxy {
     }
 
     /**
+     * @return Success
+     */
+    getTenants(): Observable<ListResultDtoOfTenantDto> {
+        let url_ = this.baseUrl + "/api/services/app/Course/GetTenants";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetTenants(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetTenants(<any>response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfTenantDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfTenantDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetTenants(response: HttpResponseBase): Observable<ListResultDtoOfTenantDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfTenantDto.fromJS(resultData200) : new ListResultDtoOfTenantDto();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status === 403) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<ListResultDtoOfTenantDto>(<any>null);
+    }
+
+    /**
      * @param id (optional) 
      * @return Success
      */
@@ -2231,6 +2290,112 @@ export interface IChangeUiThemeInput {
     theme: string;
 }
 
+export class ListResultDtoOfTenantDto implements IListResultDtoOfTenantDto {
+    items: TenantDto[] | undefined;
+
+    constructor(data?: IListResultDtoOfTenantDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(TenantDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ListResultDtoOfTenantDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ListResultDtoOfTenantDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+
+    clone(): ListResultDtoOfTenantDto {
+        const json = this.toJSON();
+        let result = new ListResultDtoOfTenantDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IListResultDtoOfTenantDto {
+    items: TenantDto[] | undefined;
+}
+
+export class TenantDto implements ITenantDto {
+    tenancyName: string;
+    name: string;
+    isActive: boolean | undefined;
+    id: number | undefined;
+
+    constructor(data?: ITenantDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.tenancyName = data["tenancyName"];
+            this.name = data["name"];
+            this.isActive = data["isActive"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): TenantDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TenantDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tenancyName"] = this.tenancyName;
+        data["name"] = this.name;
+        data["isActive"] = this.isActive;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): TenantDto {
+        const json = this.toJSON();
+        let result = new TenantDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ITenantDto {
+    tenancyName: string;
+    name: string;
+    isActive: boolean | undefined;
+    id: number | undefined;
+}
+
 export class CourseDto implements ICourseDto {
     tenantId: number | undefined;
     title: string | undefined;
@@ -3134,61 +3299,6 @@ export interface ICreateTenantDto {
     adminEmailAddress: string;
     connectionString: string | undefined;
     isActive: boolean | undefined;
-}
-
-export class TenantDto implements ITenantDto {
-    tenancyName: string;
-    name: string;
-    isActive: boolean | undefined;
-    id: number | undefined;
-
-    constructor(data?: ITenantDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.tenancyName = data["tenancyName"];
-            this.name = data["name"];
-            this.isActive = data["isActive"];
-            this.id = data["id"];
-        }
-    }
-
-    static fromJS(data: any): TenantDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new TenantDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["tenancyName"] = this.tenancyName;
-        data["name"] = this.name;
-        data["isActive"] = this.isActive;
-        data["id"] = this.id;
-        return data; 
-    }
-
-    clone(): TenantDto {
-        const json = this.toJSON();
-        let result = new TenantDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface ITenantDto {
-    tenancyName: string;
-    name: string;
-    isActive: boolean | undefined;
-    id: number | undefined;
 }
 
 export class PagedResultDtoOfTenantDto implements IPagedResultDtoOfTenantDto {

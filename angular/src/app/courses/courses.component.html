@@ -29,15 +29,15 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let course of courses | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems }">
-                            <td>{{course.name}}</td>
-                            <td>{{course.displayName}}</td>
+                            <td>{{course.title}}</td>
+                            <td>{{course.description}}</td>
                             <td class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" course="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">menu</i>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="editCourse(course)"><i class="material-icons">create</i>Edit</a></li>
-                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="delete(course)"><i class="material-icons">delete_sweep</i>Delete</a></li>
+                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="editCourse(course)"><i class="material-icons">create</i>{{l('Edit')}}</a></li>
+                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="delete(course)"><i class="material-icons">delete_sweep</i>{{l('Delete')}}</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -55,5 +55,5 @@
     </div>
 </div>
 
-<create-course-modal #createCourseModal (modalSave)="refresh()"></create-course-modal>
-<edit-course-modal #editCourseModal (modalSave)="refresh()"></edit-course-modal>
+<app-create-course-modal #createCourseModal (modalSave)="refresh()"></app-create-course-modal>
+<app-edit-course-modal #editCourseModal (modalSave)="refresh()"></app-edit-course-modal>

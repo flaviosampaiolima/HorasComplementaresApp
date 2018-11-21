@@ -50,7 +50,7 @@
                     <div class="row clearfix">
                         <div class="col-sm-12">
                             <h4>Permissions</h4>
-                            <ng-template ngFor let-permission [ngForOf]="permissions.items" let-permissionIndex="index">
+                            <ng-template ngFor let-permission [ngForOf]="tenants" let-permissionIndex="index">
                                 <div class="col-sm-6">
                                     <input type="checkbox" name="permission" value="{{permission.name}}" class="filled-in" id="permission-{{permissionIndex}}" checked="checked" />
                                     <label for="permission-{{permissionIndex}}">{{permission.displayName}}</label>

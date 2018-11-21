@@ -6,6 +6,10 @@ import { CreateCourseComponent } from 'app/courses/create-course/create-course.c
 import { EditCourseComponent } from 'app/courses/edit-course/edit-course.component';
 import { finalize } from 'rxjs/operators';
 
+@Component({
+    templateUrl: './courses.component.html',
+    animations: [appModuleAnimation()]
+})
 export class CoursesComponent extends PagedListingComponentBase<CourseDto> {
 
     @ViewChild('createCourseModal') createCourseModal: CreateCourseComponent;

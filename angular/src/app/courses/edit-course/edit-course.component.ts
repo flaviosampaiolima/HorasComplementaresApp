@@ -3,6 +3,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 import { CourseServiceProxy, CourseDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/app-component-base';
 import { finalize } from 'rxjs/operators';
+import { TenantChangeComponent } from 'account/tenant/tenant-change.component';
 
 @Component({
     selector: 'app-edit-course-modal',
@@ -40,22 +41,23 @@ export class EditCourseComponent extends AppComponentBase {
         $.AdminBSB.input.activate($(this.modalContent.nativeElement));
     }
 
-    checkPermission(permissionName: string): string {
+    /* checkPermission(permissionName: string): string {
         if (this.model.grantedPermissionNames.indexOf(permissionName) !== -1) {
             return 'checked';
         } else {
             return '';
         }
-    }
+    } */
 
     save(): void {
-        const course = this.model.course;
+        const course = this.model;
 
-        const permissions = [];
-        $(this.modalContent.nativeElement).find('[name=permission]').each(
+        let tenantId;
+        $(this.modalContent.nativeElement).find('[name=tenant]').each(
             function (index: number, elem: Element) {
-                if ($(elem).is(':checked') == true) {
-                    permissions.push(elem.getAttribute('value').valueOf());
+                if ($(elem).is(':checked') === true) {
+                    // tenants.push(elem.getAttribute('value').valueOf());
+                    tenantId = elem.getAttribute('value').valueOf();
                 }
             }
         )
@@ -63,12 +65,10 @@ export class EditCourseComponent extends AppComponentBase {
         this.saving = true;
         const input = new CourseDto();
 
-        input.name = course.name;
-        input.displayName = course.displayName;
+        input.title = course.title;
         input.description = course.description;
         input.id = course.id;
-        input.isStatic = course.isStatic;
-        input.permissions = permissions;
+        input.tenantId = tenantId;
 
 
         this._courseService.update(input)

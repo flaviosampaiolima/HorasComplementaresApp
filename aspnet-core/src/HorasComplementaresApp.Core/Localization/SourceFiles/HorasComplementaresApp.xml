@@ -93,6 +93,7 @@
     <text name="Settings">Configurações</text>
     <text name="Submit">Enviar</text>
     <text name="Courses">Cursos</text>
+    <text name="CourseName">Cursos</text>
 
   </texts>
 </localizationDictionary>
