@@ -1,5 +1,4 @@
-﻿import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+﻿import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AbpModule } from '@abp/abp.module';
 import { RouterModule } from '@angular/router';
 
@@ -11,7 +10,6 @@ import { MaterialInput } from 'shared/directives/material-input.directive';
 
 @NgModule({
     imports: [
-        CommonModule,
         AbpModule,
         RouterModule
     ],

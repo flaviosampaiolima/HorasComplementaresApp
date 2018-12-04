@@ -6,17 +6,20 @@ using Abp.Timing;
 
 namespace HorasComplementaresApp.Courses
 {
-    //[Table("Courses")]
-    public class Course : FullAuditedEntity<int>, IMustHaveTenant, IHasCreationTime, IHasDeletionTime, IHasModificationTime
+    [Table("Courses")]
+    public class Course : FullAuditedEntity<int>, IHasCreationTime, IHasDeletionTime, IHasModificationTime
     {
-        public const int MaxTitleLength = 128;
-        public const int MaxDescriptionLength = 2048;
-
-        public virtual int TenantId { get; set; }
+        public const int MaxNameLength = 30;
+        public const int MaxDisplayNameLength = 128;
+        public const int MaxDescriptionLength = 5000;
 
         [Required]
-        [StringLength(MaxTitleLength)]
-        public virtual string Title { get; protected set; }
+        [StringLength(MaxNameLength)]
+        public virtual string Name { get; protected set; }
+
+        [Required]
+        [StringLength(MaxDisplayNameLength)]
+        public virtual string DisplayName { get; protected set; }
 
         [StringLength(MaxDescriptionLength)]
         public virtual string Description { get; protected set; }

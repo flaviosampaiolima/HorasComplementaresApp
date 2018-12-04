@@ -29,8 +29,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let course of courses | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems }">
-                            <td>{{course.title}}</td>
-                            <td>{{course.description}}</td>
+                            <td>{{course.name}}</td>
+                            <td>{{course.displayName}}</td>
                             <td class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" course="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">menu</i>

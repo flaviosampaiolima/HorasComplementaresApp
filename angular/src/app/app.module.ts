@@ -35,6 +35,12 @@ import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
 import { CoursesComponent } from './courses/courses.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { CreateCourseComponent } from './courses/create-course/create-course.component';
+import { ActivityTypesComponent } from './activity-types/activity-types.component';
+import { EditActivityTypeComponent } from './activity-types/edit-activity-type/edit-activity-type.component';
+import { CreateActivityTypeComponent } from './activity-types/create-activity-type/create-activity-type.component';
+import { ReceiptTypesComponent } from './receipt-types/receipt-types.component';
+import { EditReceiptTypeComponent } from './receipt-types/edit-receipt-type/edit-receipt-type.component';
+import { CreateReceiptTypeComponent } from './receipt-types/create-receipt-type/create-receipt-type.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +64,13 @@ import { CreateCourseComponent } from './courses/create-course/create-course.com
         RightSideBarComponent,
         CoursesComponent,
         EditCourseComponent,
-        CreateCourseComponent
+        CreateCourseComponent,
+        ActivityTypesComponent,
+        EditActivityTypeComponent,
+        CreateActivityTypeComponent,
+        ReceiptTypesComponent,
+        EditReceiptTypeComponent,
+        CreateReceiptTypeComponent
     ],
     imports: [
         CommonModule,

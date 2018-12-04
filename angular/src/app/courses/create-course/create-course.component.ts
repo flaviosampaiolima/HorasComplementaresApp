@@ -1,6 +1,6 @@
-import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
-import { CourseServiceProxy, CourseDto, ListResultDtoOfTenantDto, TenantDto } from '@shared/service-proxies/service-proxies';
+import { CourseServiceProxy, CourseDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/app-component-base';
 import { finalize } from 'rxjs/operators';
 
@@ -8,15 +8,14 @@ import { finalize } from 'rxjs/operators';
     selector: 'app-create-course-modal',
     templateUrl: './create-course.component.html'
 })
-export class CreateCourseComponent extends AppComponentBase implements OnInit {
+export class CreateCourseComponent extends AppComponentBase {
     @ViewChild('createCourseModal') modal: ModalDirective;
     @ViewChild('modalContent') modalContent: ElementRef;
 
-    active: boolean = false;
-    saving: boolean = false;
+    active = false;
+    saving = false;
 
     course: CourseDto = null;
-    tenants: TenantDto[] = null;
 
     @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
     constructor(
@@ -26,19 +25,10 @@ export class CreateCourseComponent extends AppComponentBase implements OnInit {
         super(injector);
     }
 
-    ngOnInit(): void {
-
-        this._courseService.getTenants()
-        .subscribe((result) => {
-            this.tenants = result.items;
-        });
-    }
-
     show(): void {
         this.active = true;
         this.course = new CourseDto();
         this.course.init({ isStatic: false });
-
         this.modal.show();
     }
 
@@ -47,16 +37,6 @@ export class CreateCourseComponent extends AppComponentBase implements OnInit {
     }
 
     save(): void {
-        /* const permissions = [];
-        $(this.modalContent.nativeElement).find('[name=permission]').each(
-            (index: number, elem: Element) => {
-                if ($(elem).is(':checked')) {
-                    permissions.push(elem.getAttribute('value').valueOf());
-                }
-            }
-        );
-        this.course.permissions = permissions;
-        */
 
         this.saving = true;
         this._courseService.create(this.course)

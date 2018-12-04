@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="pt-BR">
   <texts>
-    <text name="HomePage" value="Página Inicial" />
+    <text name="HomePage" value="Dashboard" />
     <text name="About" value="Sobre" />
     <text name="WellcomeMessage" value="Bem Vindo ao HorasComplementaresApp!" />
     <text name="FormIsNotValidMessage" value="Formulário não é válido. Por favor, verifique e corrija os erros." />
@@ -13,7 +13,7 @@
     <text name="UserEmailIsNotConfirmedAndCanNotLogin">Seu email não foi confirmado. Você não pode fazer login.</text>
     <text name="UserLockedOutMessage">Usuário bloqueado. Por favor, tente mais tarde.</text>
     <text name="PleaseEnterLoginInformation" value="Por favor insira as informações de login" />
-    <text name="TenancyName" value="Nome da Tenancy" />
+    <text name="TenancyName" value="Nome da Instituição de Ensino" />
     <text name="UserNameOrEmail" value="Nome de usuário ou email" />
     <text name="Password" value="Senha" />
     <text name="RememberMe" value="Lembre de mim" />
@@ -33,13 +33,13 @@
     <text name="TenantName_Regex_Description" value="Instituição de Ensino deve ter no mínimo 2 caracteres, começa com uma letra e continuar com letra, número, traço ou sublinhado." />
     <text name="DefaultPasswordIs" value="Senha padrão é {0}" />
     <text name="CanBeEmptyToLoginAsHost" value="Pode estar vazio para acessar como Host." />
-    <text name="Register" value="Registrar" />
+    <text name="Register" value="Cadastre-se" />
     <text name="OrLoginWith" value="Ou faça o login com" />
     <text name="WaitingForActivationMessage" value="A sua conta está esperando para ser ativado pelo administrador do sistema." />
     <text name="TenantSelection" value="Seleção de Instituição de Ensino" />
     <text name="TenantSelection_Detail" value="Por favor selecione um das seguintes Instituições de Ensino." />
     <text name="Logout" value="Sair" />
-    <text name="RegisterFormUserNameInvalidMessage">Por favor, não entre um email no nome de usuário.</text>
+    <text name="RegisterFormUserNameInvalidMessage">Por favor, não digite um email no nome de usuário.</text>
     <text name="DatabaseConnectionString" value="Conexão com o banco de dados (Connection String)" />
     <text name="Users" value="Usuários" />
     <text name="IsActive" value="Ativo" />
@@ -82,7 +82,7 @@
     <text name="Refresh">Atualizar</text>
     <text name="Create">Criar</text>
     <text name="UserDetails">Detalhes do usuário</text>
-    <text name="UserRoles">Funções de usuário</text>
+    <text name="UserRoles">Permissões</text>
     <text name="ConfirmPassword">Confirme a senha</text>
     <text name="Version">Versão</text>
     <text name="On">Ligado</text>
@@ -91,5 +91,27 @@
     <text name="StartTyping">Comece a escrever</text>
     <text name="Skins">Temas</text>
     <text name="Settings">Configurações</text>
+    <text name="Submit">Enviar</text>
+    <text name="Description">Descrição</text>
+    <text name="NotFound">Não Localizado</text>
+    <!-- CURSO -->
+    <text name="CreateNewCourse">Criar novo Curso</text>
+    <text name="CourseName">Código do Curso</text>
+    <text name="Courses">Cursos</text>
+    <text name="EditCourse{0}">Editar curso {0}</text>
+        
+    <!-- TIPO DE ATIVIDADE -->
+    <text name="CreateNewActivityType">Criar novo Tipo de Atividade</text>
+    <text name="ActivityTypeName">Código do Tipo de Atividade</text>
+    <text name="ActivityTypes">Tipos de Atividades</text>
+    <text name="EditActivityType{0}">Editar tipo de atividade {0}</text>
+    
+    <!-- TIPO DE COMPROVANTE -->
+    <text name="CreateNewReceiptType">Criar novo Tipo de Comprovante</text>
+    <text name="ReceiptTypeName">Código do Tipo de Comprovante</text>
+    <text name="ReceiptTypes">Tipos de Comprovantes</text>
+    <text name="EditReceiptType{0}">Editar tipo de comprovante {0}</text>
+        
+        
   </texts>
 </localizationDictionary>

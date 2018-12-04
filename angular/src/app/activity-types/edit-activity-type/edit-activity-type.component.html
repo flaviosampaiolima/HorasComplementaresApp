@@ -1,0 +1,65 @@
+<div bsModal #editActivityTypeModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" activityTypes="dialog"
+    aria-labelledby="edidtActivityTypesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+
+        <div #modalContent class="modal-content">
+
+            <form *ngIf="active" #editActivityTypesForm="ngForm" id="frm_edit_activityTypes" novalidate (ngSubmit)="save()">
+
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <span>{{l("EditActivityType{0}", model.name)}}</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input id="activityTypesname" type="text" name="ActivityTypesName" [(ngModel)]="model.name"
+                                        required maxlength="32" minlength="2" class="validate form-control">
+                                    <label for="activityTypesname" class="form-label">{{l("ActivityTypesName")}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input id="displayname" type="text" name="DisplayName" [(ngModel)]="model.displayName"
+                                        required maxlength="128" minlength="2" class="validate form-control">
+                                    <label for="displayname" class="form-label">{{l("DisplayName")}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea id="activityTypes-description" name="Description" [(ngModel)]="model.description"
+                                        class="validate form-control"></textarea>
+                                    <label for="activityTypes-description" class="form-label">{{l("Description")}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+                        {{l("Cancel")}}
+                    </button>
+                    <button [disabled]="!editActivityTypesForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+                        {{l("Save")}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

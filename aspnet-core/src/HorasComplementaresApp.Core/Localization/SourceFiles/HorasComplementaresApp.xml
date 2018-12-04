@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
-    <text name="HomePage" value="Página Inicial" />
+    <text name="HomePage" value="Dashboard" />
     <text name="About" value="Sobre" />
     <text name="WellcomeMessage" value="Bem Vindo ao HorasComplementaresApp!" />
     <text name="FormIsNotValidMessage" value="Formulário não é válido. Por favor, verifique e corrija os erros." />
@@ -92,8 +92,26 @@
     <text name="Skins">Temas</text>
     <text name="Settings">Configurações</text>
     <text name="Submit">Enviar</text>
+    <text name="Description">Descrição</text>
+    <text name="NotFound">Não Localizado</text>
+    <!-- CURSO -->
+    <text name="CreateNewCourse">Criar novo Curso</text>
+    <text name="CourseName">Código do Curso</text>
     <text name="Courses">Cursos</text>
-    <text name="CourseName">Cursos</text>
-
+    <text name="EditCourse{0}">Editar curso {0}</text>
+        
+    <!-- TIPO DE ATIVIDADE -->
+    <text name="CreateNewActivityType">Criar novo Tipo de Atividade</text>
+    <text name="ActivityTypeName">Código do Tipo de Atividade</text>
+    <text name="ActivityTypes">Tipos de Atividades</text>
+    <text name="EditActivityType{0}">Editar tipo de atividade {0}</text>
+    
+    <!-- TIPO DE COMPROVANTE -->
+    <text name="CreateNewReceiptTypes">Criar novo Tipo de Comprovante</text>
+    <text name="ReceiptTypeName">Código do Tipo de Comprovante</text>
+    <text name="ReceiptTypes">Tipos de Comprovantes</text>
+    <text name="EditReceiptType{0}">Editar tipo de comprovante {0}</text>
+        
+        
   </texts>
 </localizationDictionary>

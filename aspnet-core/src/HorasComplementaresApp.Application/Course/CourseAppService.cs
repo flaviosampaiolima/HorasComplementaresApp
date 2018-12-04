@@ -23,21 +23,10 @@ namespace HorasComplementaresApp.Courses
     public class CourseAppService : AsyncCrudAppService<Course, CourseDto>
     {
 
-        private readonly IRepository<Tenant> _tenantRepository;
-
-
         public CourseAppService(
-            IRepository<Course> repository,
-            IRepository<Tenant> tenantRepository) 
+            IRepository<Course> repository) 
             : base(repository)
         {
-            _tenantRepository = tenantRepository;
-        }
-
-        public async Task<ListResultDto<TenantDto>> GetTenants()
-        {
-            var tenants = await _tenantRepository.GetAllListAsync();
-            return new ListResultDto<TenantDto>(ObjectMapper.Map<List<TenantDto>>(tenants));
         }
     }
 }

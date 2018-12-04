@@ -18,7 +18,7 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input id="coursename" type="text" name="CourseName" [(ngModel)]="course.name" required maxlength="32" minlength="2" class="validate form-control">
+                                    <input id="coursename" type="text" name="CourseName" [(ngModel)]="course.name" required maxlength="30" minlength="2" class="validate form-control">
                                     <label for="coursename" class="form-label">{{l("CourseName")}}</label>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input id="displayname" type="text" name="DisplayName" [(ngModel)]="course.displayName" required maxlength="32" minlength="2" class="validate form-control">
+                                    <input id="displayname" type="text" name="DisplayName" [(ngModel)]="course.displayName" required maxlength="128" minlength="2" class="validate form-control">
                                     <label for="displayname" class="form-label">{{l("DisplayName")}}</label>
                                 </div>
                             </div>
@@ -40,22 +40,10 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <textarea id="course-description" name="Description" [(ngModel)]="course.description" class="validate form-control"></textarea>
+                                    <textarea id="course-description" name="Description" [(ngModel)]="course.description" class="validate form-control" maxlength="5000" minlength="2" ></textarea>
                                     <label for="course-description" class="form-label">Course Description</label>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="row clearfix">
-                        <div class="col-sm-12">
-                            <h4>Permissions</h4>
-                            <ng-template ngFor let-permission [ngForOf]="tenants" let-permissionIndex="index">
-                                <div class="col-sm-6">
-                                    <input type="checkbox" name="permission" value="{{permission.name}}" class="filled-in" id="permission-{{permissionIndex}}" checked="checked" />
-                                    <label for="permission-{{permissionIndex}}">{{permission.displayName}}</label>
-                                </div>
-                            </ng-template>
                         </div>
                     </div>
                 </div>

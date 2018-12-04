@@ -1,0 +1,65 @@
+<div bsModal #editReceiptTypeModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" receiptTypes="dialog"
+    aria-labelledby="edidtReceiptTypesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+
+        <div #modalContent class="modal-content">
+
+            <form *ngIf="active" #editReceiptTypesForm="ngForm" id="frm_edit_receiptTypes" novalidate (ngSubmit)="save()">
+
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <span>{{l("EditReceiptType{0}", model.name)}}</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input id="receiptTypesname" type="text" name="ReceiptTypesName" [(ngModel)]="model.name"
+                                        required maxlength="32" minlength="2" class="validate form-control">
+                                    <label for="receiptTypesname" class="form-label">{{l("ReceiptTypesName")}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input id="displayname" type="text" name="DisplayName" [(ngModel)]="model.displayName"
+                                        required maxlength="128" minlength="2" class="validate form-control">
+                                    <label for="displayname" class="form-label">{{l("DisplayName")}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea id="receiptTypes-description" name="Description" [(ngModel)]="model.description"
+                                        class="validate form-control"></textarea>
+                                    <label for="receiptTypes-description" class="form-label">{{l("Description")}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+                        {{l("Cancel")}}
+                    </button>
+                    <button [disabled]="!editReceiptTypesForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+                        {{l("Save")}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

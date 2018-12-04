@@ -19,4 +19,10 @@
     <Compile Remove="Course\CourseCancelledEvent.cs" />
     <Compile Remove="Course\ICourseManager.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ActivityType\" />
+    <Folder Include="ActivityType\Dto\" />
+    <Folder Include="ReceiptType\" />
+    <Folder Include="ReceiptType\Dto\" />
+  </ItemGroup>
 </Project>

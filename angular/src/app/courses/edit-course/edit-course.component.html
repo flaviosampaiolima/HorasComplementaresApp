@@ -1,4 +1,5 @@
-<div bsModal #editCourseModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" course="dialog" aria-labelledby="edidtCourseModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+<div bsModal #editCourseModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" course="dialog"
+    aria-labelledby="edidtCourseModal" aria-hidden="true" [config]="{backdrop: 'static'}">
     <div class="modal-dialog">
 
         <div #modalContent class="modal-content">
@@ -10,16 +11,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">
-                        <span>{{l("EditCourse")}} <span *ngIf="model.course.isStatic"> (<span style="color:red">static</span>)</span></span>
+                        <span>{{l("EditCourse{0}", model.displayName)}}</span>
                     </h4>
                 </div>
                 <div class="modal-body">
-
                     <div class="row clearfix">
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input id="coursename" [disabled]="model.course.isStatic" type="text" name="CourseName" [(ngModel)]="model.course.name" required maxlength="32" minlength="2" class="validate form-control">
+                                    <input id="coursename" type="text" name="CourseName" [(ngModel)]="model.name"
+                                        required maxlength="32" minlength="2" class="validate form-control">
                                     <label for="coursename" class="form-label">{{l("CourseName")}}</label>
                                 </div>
                             </div>
@@ -30,7 +31,8 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input id="displayname" type="text" name="DisplayName" [(ngModel)]="model.course.displayName" required maxlength="32" minlength="2" class="validate form-control">
+                                    <input id="displayname" type="text" name="DisplayName" [(ngModel)]="model.displayName"
+                                        required maxlength="130" minlength="2" class="validate form-control">
                                     <label for="displayname" class="form-label">{{l("DisplayName")}}</label>
                                 </div>
                             </div>
@@ -41,26 +43,13 @@
                         <div class="col-sm-12">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <textarea id="course-description" name="Description" [(ngModel)]="model.course.description" class="validate form-control"></textarea>
-                                    <label for="course-description" class="form-label">Course Description</label>
+                                    <textarea id="course-description" name="Description" [(ngModel)]="model.description"
+                                        class="validate form-control"></textarea>
+                                    <label for="course-description" class="form-label">{{l("Description")}}</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row clearfix">
-                        <div class="col-sm-12">
-                            <h4>Permissions</h4>
-
-                            <ng-template ngFor let-permission [ngForOf]="model.permissions" let-permissionIndex="index">
-                                <div class="col-sm-6">
-                                    <input [disabled]="model.course.isStatic" type="checkbox" name="permission" value="{{permission.name}}" class="filled-in" id="permission-{{permissionIndex}}" checked="{{checkPermission(permission.name)}}" />
-                                    <label for="permission-{{permissionIndex}}">{{permission.displayName}}</label>
-                                </div>
-                            </ng-template>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
@@ -70,7 +59,6 @@
                         {{l("Save")}}
                     </button>
                 </div>
-
             </form>
         </div>
     </div>

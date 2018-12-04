@@ -1,9 +1,8 @@
 import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
-import { CourseServiceProxy, CourseDto } from '@shared/service-proxies/service-proxies';
+import { CourseServiceProxy, CourseDto, TenantDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/app-component-base';
 import { finalize } from 'rxjs/operators';
-import { TenantChangeComponent } from 'account/tenant/tenant-change.component';
 
 @Component({
     selector: 'app-edit-course-modal',
@@ -13,8 +12,8 @@ export class EditCourseComponent extends AppComponentBase {
     @ViewChild('editCourseModal') modal: ModalDirective;
     @ViewChild('modalContent') modalContent: ElementRef;
 
-    active: boolean = false;
-    saving: boolean = false;
+    active = false;
+    saving = false;
 
     model: CourseDto = null;
 
@@ -41,18 +40,10 @@ export class EditCourseComponent extends AppComponentBase {
         $.AdminBSB.input.activate($(this.modalContent.nativeElement));
     }
 
-    /* checkPermission(permissionName: string): string {
-        if (this.model.grantedPermissionNames.indexOf(permissionName) !== -1) {
-            return 'checked';
-        } else {
-            return '';
-        }
-    } */
-
     save(): void {
         const course = this.model;
 
-        let tenantId;
+        /* let tenantId;
         $(this.modalContent.nativeElement).find('[name=tenant]').each(
             function (index: number, elem: Element) {
                 if ($(elem).is(':checked') === true) {
@@ -60,16 +51,15 @@ export class EditCourseComponent extends AppComponentBase {
                     tenantId = elem.getAttribute('value').valueOf();
                 }
             }
-        )
+        ) */
 
         this.saving = true;
         const input = new CourseDto();
 
-        input.title = course.title;
+        input.name = course.name;
+        input.displayName = course.displayName
         input.description = course.description;
         input.id = course.id;
-        input.tenantId = tenantId;
-
 
         this._courseService.update(input)
             .pipe(finalize(() => { this.saving = false; }))
